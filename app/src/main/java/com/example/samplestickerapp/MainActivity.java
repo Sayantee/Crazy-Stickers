@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         prev=(Button)findViewById(R.id.prev);
         next=(Button)findViewById(R.id.next);
 
-        mSlideViewPager = (ViewPager) findViewById(R.id.slideViewPager);
+        mSlideViewPager = (ViewPager) findViewById(R.id.slideViewPager);//to enable sliding between different pages
         sliderAdapter = new SliderAdapter(this);
 
         mSlideViewPager.setAdapter(sliderAdapter);
@@ -34,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(mCurrent==2){
+                if(mCurrent==2)//the starting pages have been visited and user is navigated to the page showing the sticker packs
+                {
                     startActivity(new Intent(MainActivity.this,EntryActivity.class));
                 }
                 else
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         public void onPageScrolled(int i, float v, int i1) {
             //Log.i("HI",Integer.toString(i));
         }
-
+        //configure the prev and next buttons in the different pages
         @Override
         public void onPageSelected(int i) {
             mCurrent=i;
