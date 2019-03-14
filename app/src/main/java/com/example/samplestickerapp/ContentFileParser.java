@@ -21,25 +21,27 @@ import java.util.List;
 class ContentFileParser {
 
     private static final int LIMIT_EMOJI_COUNT = 2;
-
+    //create a json reader to read the json encoded sticker packs
     @NonNull
     static List<StickerPack> parseStickerPacks(@NonNull InputStream contentsInputStream) throws IOException, IllegalStateException {
         try (JsonReader reader = new JsonReader(new InputStreamReader(contentsInputStream))) {
             return readStickerPacks(reader);
         }
     }
-
+    //read the sticker packs available and form a list
     @NonNull
     private static List<StickerPack> readStickerPacks(@NonNull JsonReader reader) throws IOException, IllegalStateException {
         List<StickerPack> stickerPackList = new ArrayList<>();
-        String androidPlayStoreLink = null;
         String iosAppStoreLink = null;
         reader.beginObject();
+        String androidPlayStoreLink = null;
         while (reader.hasNext()) {
             String key = reader.nextName();
-            if ("android_play_store_link".equals(key)) {
+            if ("android_play_store_link".equals(key)) //android playstore link for the pack
+            {
                 androidPlayStoreLink = reader.nextString();
-            } else if ("ios_app_store_link".equals(key)) {
+            } else if ("ios_app_store_link".equals(key))//ios appstore link for the pack
+            {
                 iosAppStoreLink = reader.nextString();
             } else if ("sticker_packs".equals(key)) {
                 reader.beginArray();
@@ -62,7 +64,7 @@ class ContentFileParser {
         }
         return stickerPackList;
     }
-
+    //read the different attributes of a sticker pack like identifier, name etc.
     @NonNull
     private static StickerPack readStickerPack(@NonNull JsonReader reader) throws IOException, IllegalStateException {
         reader.beginObject();
@@ -132,7 +134,7 @@ class ContentFileParser {
         stickerPack.setStickers(stickerList);
         return stickerPack;
     }
-
+    //read the image files and emojis associated with the sticker pack
     @NonNull
     private static List<Sticker> readStickers(@NonNull JsonReader reader) throws IOException, IllegalStateException {
         reader.beginArray();
