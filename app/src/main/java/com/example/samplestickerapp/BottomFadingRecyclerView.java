@@ -14,18 +14,19 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 
 public class BottomFadingRecyclerView extends RecyclerView {
+    //constructor
     public BottomFadingRecyclerView(Context context) {
         super(context);
     }
-
+    //constructor
     public BottomFadingRecyclerView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
-
+    //constructor
     public BottomFadingRecyclerView(Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
-
+    //returns the intensity of the top fading edge
     @Override
     protected float getTopFadingEdgeStrength() {
         return 0.0f;
