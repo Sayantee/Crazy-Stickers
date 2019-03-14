@@ -29,7 +29,7 @@ public class EntryActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entry);
-        overridePendingTransition(0, 0);
+        overridePendingTransition(0, 0);//enable sliding from one page to next
        // if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         //}
@@ -37,7 +37,7 @@ public class EntryActivity extends BaseActivity {
         loadListAsyncTask = new LoadListAsyncTask(this);
         loadListAsyncTask.execute();
     }
-
+    //show the available sticker packs
     private void showStickerPack(ArrayList<StickerPack> stickerPackList) {
         progressBar.setVisibility(View.GONE);
         if (stickerPackList.size() > 1) {
@@ -55,7 +55,7 @@ public class EntryActivity extends BaseActivity {
             overridePendingTransition(0, 0);
         }
     }
-
+    //show the error, if any, that has occured during fetching the sticker packs
     private void showErrorMessage(String errorMessage) {
         progressBar.setVisibility(View.GONE);
         Log.e("EntryActivity", "error fetching sticker packs, " + errorMessage);
@@ -77,7 +77,7 @@ public class EntryActivity extends BaseActivity {
         LoadListAsyncTask(EntryActivity activity) {
             this.contextWeakReference = new WeakReference<>(activity);
         }
-
+        //fetches sticker packs in the background
         @Override
         protected Pair<String, ArrayList<StickerPack>> doInBackground(Void... voids) {
             ArrayList<StickerPack> stickerPackList;
@@ -100,7 +100,7 @@ public class EntryActivity extends BaseActivity {
                 return new Pair<>(e.getMessage(), null);
             }
         }
-
+        //show the sticker packs fetched in the doInBackground() method
         @Override
         protected void onPostExecute(Pair<String, ArrayList<StickerPack>> stringListPair) {
 
@@ -115,3 +115,4 @@ public class EntryActivity extends BaseActivity {
         }
     }
 }
+
