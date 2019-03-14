@@ -14,7 +14,7 @@ public class SliderAdapter extends PagerAdapter{
 
     Context context;
     LayoutInflater layoutInflater;
-
+    //constructor
     public SliderAdapter(Context context) {
 
         this.context = context;
@@ -57,7 +57,7 @@ public class SliderAdapter extends PagerAdapter{
     public boolean isViewFromObject(View view, Object o) {
         return view == (RelativeLayout) o;
     }
-
+    //create the three introductory pages
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
 
