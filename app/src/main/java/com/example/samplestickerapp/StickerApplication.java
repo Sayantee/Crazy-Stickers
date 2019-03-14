@@ -11,7 +11,7 @@ package com.example.samplestickerapp;
 import android.app.Application;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
-
+//using the fresco library for easy image loading and display
 public class StickerApplication extends Application {
 
     @Override
