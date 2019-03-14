@@ -17,25 +17,26 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 
 public abstract class BaseActivity extends AppCompatActivity {
+    //this method is called when the user wishes to navigate up in the application using the action bar
     @Override
     public boolean onSupportNavigateUp() {
-        onBackPressed();
+        onBackPressed();//finishes the activity
         return true;
     }
 
     public static final class MessageDialogFragment extends DialogFragment {
         private static final String ARG_TITLE_ID = "title_id";
         private static final String ARG_MESSAGE = "message";
-
+        //create a new fragment for showing a dialog
         public static DialogFragment newInstance(@StringRes int titleId, String message) {
             DialogFragment fragment = new MessageDialogFragment();
-            Bundle arguments = new Bundle();
+            Bundle arguments = new Bundle();//pass data to the fragment created
             arguments.putInt(ARG_TITLE_ID, titleId);
             arguments.putString(ARG_MESSAGE, message);
             fragment.setArguments(arguments);
             return fragment;
         }
-
+        //create an alert dialog
         @NonNull
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
