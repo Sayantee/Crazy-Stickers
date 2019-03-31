@@ -96,7 +96,7 @@ public class StickerContentProvider extends ContentProvider {
 
         return true;
     }
-
+    //query to fetch stickers
     @Override
     public Cursor query(@NonNull Uri uri, @Nullable String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
@@ -122,7 +122,7 @@ public class StickerContentProvider extends ContentProvider {
         return null;
     }
 
-
+    //return the type of uri
     @Override
     public String getType(@NonNull Uri uri) {
         final int matchCode = MATCHER.match(uri);
@@ -141,7 +141,7 @@ public class StickerContentProvider extends ContentProvider {
                 throw new IllegalArgumentException("Unknown URI: " + uri);
         }
     }
-
+    
     private synchronized void readContentFile(@NonNull Context context) {
         try (InputStream contentsInputStream = context.getAssets().open(CONTENT_FILE_NAME)) {
             stickerPackList = ContentFileParser.parseStickerPacks(contentsInputStream);
@@ -171,7 +171,7 @@ public class StickerContentProvider extends ContentProvider {
 
         return getStickerPackInfo(uri, new ArrayList<>());
     }
-
+    //return information about the sticker pack
     @NonNull
     private Cursor getStickerPackInfo(@NonNull Uri uri, @NonNull List<StickerPack> stickerPackList) {
         MatrixCursor cursor = new MatrixCursor(
@@ -203,7 +203,7 @@ public class StickerContentProvider extends ContentProvider {
         cursor.setNotificationUri(Objects.requireNonNull(getContext()).getContentResolver(), uri);
         return cursor;
     }
-
+    //extract the stickers from a sticker pack
     @NonNull
     private Cursor getStickersForAStickerPack(@NonNull Uri uri) {
         final String identifier = uri.getLastPathSegment();
@@ -218,7 +218,7 @@ public class StickerContentProvider extends ContentProvider {
         cursor.setNotificationUri(Objects.requireNonNull(getContext()).getContentResolver(), uri);
         return cursor;
     }
-
+    //fetch the assets for a particular uri
     private AssetFileDescriptor getImageAsset(Uri uri) throws IllegalArgumentException {
         AssetManager am = Objects.requireNonNull(getContext()).getAssets();
         final List<String> pathSegments = uri.getPathSegments();
