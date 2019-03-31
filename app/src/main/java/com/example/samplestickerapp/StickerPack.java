@@ -104,7 +104,7 @@ class StickerPack implements Parcelable {
     public int describeContents() {
         return 0;
     }
-    //write the sticker pack
+    //write the sticker packs
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(identifier);
